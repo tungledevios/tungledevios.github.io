@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TungLeDev | App Development & Support</title>
+  <meta name="description" content="Professional mobile app development, UI/UX design, performance optimization, and developer support services by TungLeDev." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f5fa;
+      --surface: #ffffff;
+      --surface-soft: #eceefe;
+      --text: #161b3d;
+      --muted: #5d6380;
+      --primary: #3d4fd6;
+      --primary-dark: #2f3db0;
+      --primary-light: #a5b4fc;
+      --accent: #f5b83d;
+      --deep: #12163a;
+      --border: #e1e3ee;
+      --shadow: 0 20px 50px rgba(22, 27, 61, 0.08);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --container: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--container));
+      margin: 0 auto;
+    }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(244, 245, 250, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 1.15rem;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px 12px 12px 4px;
+      color: #ffffff;
+      background: linear-gradient(140deg, var(--primary), #6474f0);
+      font-size: 1rem;
+    }
+
+    .brand em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.94rem;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: var(--surface-soft);
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: var(--text);
+      border-radius: 99px;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 22px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      font-size: 0.96rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #ffffff;
+      background: var(--primary);
+      box-shadow: 0 12px 24px rgba(61, 79, 214, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface);
+    }
+
+    .btn-accent {
+      color: var(--deep);
+      background: var(--accent);
+    }
+
+    .btn-sm {
+      min-height: 40px;
+      padding: 0 16px;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      padding: 80px 0 72px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -160px;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(165, 180, 252, 0.35), transparent 65%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 6px 14px 6px 6px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .eyebrow b {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.6vw, 4.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.045em;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 .hl {
+      color: var(--primary);
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .hero h1 .hl::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.06em;
+      height: 0.18em;
+      background: var(--accent);
+      opacity: 0.45;
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    .hero p {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      padding-top: 26px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .hero-trust div strong {
+      display: block;
+      font-size: 1.6rem;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+
+    .hero-trust div span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-preview {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      padding: 12px;
+      border-radius: 40px;
+      background: var(--deep);
+      box-shadow: 0 30px 70px rgba(18, 22, 58, 0.3);
+      transform: rotate(2deg);
+    }
+
+    .phone-screen {
+      min-height: 500px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, #eceefe, #ffffff 60%);
+      overflow: hidden;
+      padding: 22px 18px;
+    }
+
+    .app-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .dot-group {
+      display: flex;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary-light);
+    }
+
+    .mini-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #fb7185);
+    }
+
+    .app-title {
+      font-size: 1.45rem;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      margin-bottom: 16px;
+    }
+
+    .metric-card {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid #eceef5;
+      margin-bottom: 12px;
+    }
+
+    .metric-card strong {
+      display: block;
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+    }
+
+    .metric-card span {
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .progress {
+      height: 8px;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: #dde1fb;
+      overflow: hidden;
+    }
+
+    .progress > i {
+      display: block;
+      height: 100%;
+      width: 76%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), #7c8cf8);
+    }
+
+    .progress.warm > i {
+      background: linear-gradient(90deg, #f59e0b, var(--accent));
+    }
+
+    .float-badge {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .float-badge i {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      font-style: normal;
+      background: var(--surface-soft);
+      color: var(--primary);
+    }
+
+    .float-badge.one {
+      top: 40px;
+      left: -10px;
+    }
+
+    .float-badge.two {
+      bottom: 60px;
+      right: -10px;
+    }
+
+    .float-badge.two i {
+      background: #fef4dc;
+      color: #a86f06;
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 88px 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+      margin-bottom: 14px;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    /* About: split layout */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-grid .section-title {
+      margin-bottom: 18px;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 24px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .about-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-weight: 600;
+    }
+
+    .about-list li::before {
+      content: "✓";
+      flex: none;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--surface-soft);
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat {
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .stat.wide {
+      grid-column: span 2;
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2.6rem;
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .stat.wide span {
+      color: #e0e7ff;
+    }
+
+    /* Services: header split + numbered cards */
+    .split-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 44px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 28px;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: rgba(61, 79, 214, 0.35);
+    }
+
+    .service-card .num {
+      position: absolute;
+      top: 24px;
+      right: 26px;
+      color: #cfd2e3;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 22px;
+    }
+
+    .service-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .service-card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .service-card .tags span {
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* Support: dark band */
+    .support-section {
+      background: var(--deep);
+      color: #ffffff;
+      border-radius: 36px;
+      margin: 0 16px;
+    }
+
+    .support-section .section-label {
+      color: var(--primary-light);
+    }
+
+    .support-section .section-lead {
+      color: #aab0d0;
+    }
+
+    .support-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .support-intro {
+      position: sticky;
+      top: 110px;
+    }
+
+    .support-intro .section-title {
+      margin-bottom: 16px;
+    }
+
+    .support-intro .btn {
+      margin-top: 28px;
+    }
+
+    .support-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .support-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 24px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .support-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(165, 180, 252, 0.4);
+    }
+
+    .support-card .icon-box {
+      margin: 0;
+      background: rgba(165, 180, 252, 0.12);
+      color: var(--primary-light);
+    }
+
+    .support-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .support-card p {
+      color: #aab0d0;
+    }
+
+    /* Contact */
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+      padding: 48px;
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(245, 184, 61, 0.25), transparent 45%),
+        linear-gradient(140deg, #eceefe, #ffffff);
+      border: 1px solid var(--border);
+    }
+
+    .contact-box .section-title {
+      margin-bottom: 14px;
+    }
+
+    .contact-box .section-lead {
+      margin-bottom: 28px;
+    }
+
+    .contact-card {
+      padding: 8px 24px;
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child {
+      border-bottom: 0;
+    }
+
+    .contact-item span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .contact-item strong {
+      text-align: right;
+      word-break: break-all;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 32px 0 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px) {
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 16px;
+        right: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: #ffffff;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .split-header,
+      .support-layout,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .split-header {
+        gap: 14px;
+      }
+
+      .support-intro {
+        position: static;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .support-section {
+        margin: 0 8px;
+        border-radius: 28px;
+      }
+
+      .contact-box {
+        padding: 28px 22px;
+      }
+
+      .phone-screen {
+        min-height: 440px;
+      }
+
+      .float-badge.one {
+        left: 0;
+      }
+
+      .float-badge.two {
+        right: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .float-badge {
+        display: none;
+      }
+
+      .stat strong {
+        font-size: 2.1rem;
+      }
+
+      .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .contact-item strong {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="TungLeDev home">
+        <span class="brand-mark">T</span>
+        <span>TungLe<em>Dev</em></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#support">Developer Support</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a class="btn btn-primary btn-sm nav-cta" href="#contact">Get in touch</a>
+
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><b>New</b> Mobile apps · Product design · Support</div>
+          <h1>Building polished mobile products for <span class="hl">global users.</span></h1>
+          <p>
+            We design, build, optimize, and maintain high-quality Android and iOS applications for product teams that care about performance, usability, and long-term growth.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Send Message →</a>
+            <a class="btn btn-secondary" href="#services">Explore Services</a>
+          </div>
+          <div class="hero-trust">
+            <div><strong>10+</strong><span>Years experience</span></div>
+            <div><strong>50+</strong><span>Apps delivered</span></div>
+            <div><strong>24h</strong><span>Response target</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Mobile app preview illustration">
+          <div class="phone-preview">
+            <div class="phone-screen">
+              <div class="app-topbar">
+                <div class="dot-group">
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                </div>
+                <span class="mini-avatar"></span>
+              </div>
+              <h2 class="app-title">App quality dashboard</h2>
+              <div class="metric-card">
+                <strong>99.8%</strong>
+                <span>Crash-free sessions</span>
+                <div class="progress"><i></i></div>
+              </div>
+              <div class="metric-card">
+                <strong>4.8★</strong>
+                <span>Average user rating</span>
+                <div class="progress warm"><i style="width: 88%"></i></div>
+              </div>
+              <div class="metric-card">
+                <strong>32%</strong>
+                <span>Performance improvement</span>
+                <div class="progress"><i style="width: 64%"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="float-badge one"><i>⚡</i> Faster startup</div>
+          <div class="float-badge two"><i>★</i> 4.8 rating</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="section-label">About Us</div>
+          <h2 class="section-title">A compact product team for mobile-first businesses.</h2>
+          <p class="section-lead">
+            TungLeDev helps startups and digital product teams ship stable, scalable, and commercially focused mobile applications.
+          </p>
+          <ul class="about-list">
+            <li>Native iOS and Android expertise</li>
+            <li>Design and engineering under one roof</li>
+            <li>Long-term maintenance and support</li>
+          </ul>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat wide">
+            <strong>10+</strong>
+            <span>Years of mobile experience</span>
+          </div>
+          <div class="stat">
+            <strong>50+</strong>
+            <span>Apps designed and delivered</span>
+          </div>
+          <div class="stat">
+            <strong>24h</strong>
+            <span>Support response target</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="split-header">
+          <div>
+            <div class="section-label">Our Services</div>
+            <h2 class="section-title">Everything needed to launch and improve mobile apps.</h2>
+          </div>
+          <p class="section-lead">
+            From the first prototype to the next major release, we cover the full product cycle — design, native development, and ongoing improvements.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="service-card">
+            <span class="num">01</span>
+            <div class="icon-box">iOS</div>
+            <h3>iOS App Development</h3>
+            <p>Native iPhone and iPad applications built with clean architecture, polished UI, and reliable release workflows.</p>
+            <div class="tags"><span>Swift</span><span>SwiftUI</span><span>App Store</span></div>
+          </article>
+
+          <article class="service-card">
+            <span class="num">02</span>
+            <div class="icon-box">A</div>
+            <h3>Android App Development</h3>
+            <p>High-performance Android apps using Kotlin, Jetpack, modern architecture, and scalable product foundations.</p>
+            <div class="tags"><span>Kotlin</span><span>Jetpack</span><span>Google Play</span></div>
+          </article>
+
+          <article class="service-card">
+            <span class="num">03</span>
+            <div class="icon-box">UX</div>
+            <h3>UX/UI Design</h3>
+            <p>User-centered product design, onboarding flows, monetization layouts, design systems, and conversion-focused screens.</p>
+            <div class="tags"><span>Figma</span><span>Design systems</span><span>Prototyping</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="support-section" id="support">
+      <div class="container support-layout">
+        <div class="support-intro">
+          <div class="section-label">Developer Support</div>
+          <h2 class="section-title">Fast technical support for production issues.</h2>
+          <p class="section-lead">
+            From urgent bug fixes to SDK integrations, we help teams resolve blockers and improve app stability without slowing product delivery.
+          </p>
+          <a class="btn btn-accent" href="#contact">Request support</a>
+        </div>
+
+        <div class="support-list">
+          <article class="support-card">
+            <div class="icon-box">01</div>
+            <div>
+              <h3>Issue Resolution</h3>
+              <p>Diagnose crashes, build failures, release problems, SDK conflicts, and app behavior bugs.</p>
+            </div>
+          </article>
+
+          <article class="support-card">
+            <div class="icon-box">02</div>
+            <div>
+              <h3>Performance Optimization</h3>
+              <p>Improve startup time, UI smoothness, memory usage, network reliability, and app responsiveness.</p>
+            </div>
+          </article>
+
+          <article class="support-card">
+            <div class="icon-box">03</div>
+            <div>
+              <h3>Feature Support</h3>
+              <p>Support for implementing payments, analytics, ads, remote config, media, camera, and AI-powered features.</p>
+            </div>
+          </article>
+
+          <article class="support-card">
+            <div class="icon-box">04</div>
+            <div>
+              <h3>Custom Solutions</h3>
+              <p>Tailored support for APIs, backend integration, automation, dashboards, and platform-specific workflows.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <div class="section-label">Contact</div>
+            <h2 class="section-title">Need help with your mobile product?</h2>
+            <p class="section-lead">
+              Contact us for app development, technical support, performance optimization, or product consultation.
+            </p>
+            <a class="btn btn-primary" href="mailto:tungle.dev@icloud.com">Send Message →</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-item">
+              <span>Email</span>
+              <strong>tungle.dev@icloud.com</strong>
+            </div>
+            <div class="contact-item">
+              <span>Response</span>
+              <strong>Within 24 hours</strong>
+            </div>
+            <div class="contact-item">
+              <span>Focus</span>
+              <strong>Mobile apps</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <a class="brand" href="#top" aria-label="TungLeDev home">
+        <span class="brand-mark">T</span>
+        <span>TungLe<em>Dev</em></span>
+      </a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#support">Support</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div>© <span id="year"></span> TungLeDev. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('#navLinks');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
